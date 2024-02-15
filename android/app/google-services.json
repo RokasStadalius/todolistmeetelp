@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "280000991521",
+    "project_id": "to-do-app-meetelp",
+    "storage_bucket": "to-do-app-meetelp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280000991521:android:09016b4fe24b8d4861ae60",
+        "android_client_info": {
+          "package_name": "com.example.todoapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQe9MgJgR8nbdAeYY5vURuUljy3tC_zjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:280000991521:android:394af8e4a7e557af61ae60",
+        "android_client_info": {
+          "package_name": "com.example.todoappmeetelp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQe9MgJgR8nbdAeYY5vURuUljy3tC_zjU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
