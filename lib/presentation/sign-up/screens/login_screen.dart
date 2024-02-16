@@ -41,16 +41,16 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               height: 50,
               child: TextFormField(
                 controller: _emailController,
-                style: const TextStyle(color: Colors.black87), // Text color
+                style: const TextStyle(color: Colors.black87),
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  fillColor: Colors.white.withOpacity(0.7),
                   hintText: "Email",
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 14), // Padding
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none, // No border
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -61,17 +61,17 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               height: 50,
               child: TextFormField(
                 controller: _passwordController,
-                style: const TextStyle(color: Colors.black87), // Text color
+                style: const TextStyle(color: Colors.black87),
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  fillColor: Colors.white.withOpacity(0.7),
                   hintText: "Password",
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 14), // Padding
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none, // No border
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -83,9 +83,9 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               child: ElevatedButton(
                 onPressed: _signIn,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[700], // Button color
+                  backgroundColor: Colors.green[700],
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25), // Button border
+                    borderRadius: BorderRadius.circular(25),
                   ),
                 ),
                 child: const Text(

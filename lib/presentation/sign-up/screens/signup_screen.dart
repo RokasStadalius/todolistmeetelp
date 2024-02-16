@@ -41,16 +41,16 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               height: 50,
               child: TextFormField(
                 controller: _emailController,
-                style: const TextStyle(color: Colors.black87), // Text color
+                style: const TextStyle(color: Colors.black87),
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  fillColor: Colors.white.withOpacity(0.7),
                   hintText: "Email",
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 14), // Padding
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none, // No border
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -61,17 +61,17 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               height: 50,
               child: TextFormField(
                 controller: _passwordController,
-                style: const TextStyle(color: Colors.black87), // Text color
+                style: const TextStyle(color: Colors.black87),
                 obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  fillColor: Colors.white.withOpacity(0.7),
                   hintText: "Password",
-                  contentPadding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 14), // Padding
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide.none, // No border
+                    borderSide: BorderSide.none,
                   ),
                 ),
               ),
@@ -83,9 +83,9 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               child: ElevatedButton(
                 onPressed: _signUp,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green[700], // Button color
+                  backgroundColor: Colors.green[700],
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25), // Button border
+                    borderRadius: BorderRadius.circular(25),
                   ),
                 ),
                 child: const Text(

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 class BasePage extends StatelessWidget {
   final Widget child;
-  final bool showAppBar; // Control AppBar visibility
-  final PreferredSizeWidget? customAppBar; // Custom AppBar widget
+  final bool showAppBar;
+  final PreferredSizeWidget? customAppBar;
   final List<Color> gradientColors;
   final AlignmentGeometry gradientBegin;
   final AlignmentGeometry gradientEnd;
@@ -11,8 +11,8 @@ class BasePage extends StatelessWidget {
   const BasePage({
     Key? key,
     required this.child,
-    this.showAppBar = true, // Default to true for backward compatibility
-    this.customAppBar, // Allow custom AppBar
+    this.showAppBar = true,
+    this.customAppBar,
     this.gradientColors = const [Color(0xfffff700), Color(0xff3cd515)],
     this.gradientBegin = Alignment.topLeft,
     this.gradientEnd = Alignment.bottomRight,

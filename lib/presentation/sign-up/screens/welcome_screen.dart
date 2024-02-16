@@ -22,9 +22,9 @@ class WelcomeScreen extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.green[700], // text color
+                  backgroundColor: Colors.green[700],
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25), // rounded corners
+                    borderRadius: BorderRadius.circular(25),
                   ),
                 ),
                 child: const Text(
@@ -43,9 +43,9 @@ class WelcomeScreen extends StatelessWidget {
                 },
                 style: ElevatedButton.styleFrom(
                   foregroundColor: Colors.white,
-                  backgroundColor: Colors.green[900], // text color
+                  backgroundColor: Colors.green[900],
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25), // rounded corners
+                    borderRadius: BorderRadius.circular(25),
                   ),
                 ),
                 child: const Text(
