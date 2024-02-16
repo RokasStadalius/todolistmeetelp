@@ -27,20 +27,36 @@ class _TaskCreationState extends ConsumerState<TaskCreation> {
     BuildContext context,
   ) {
     return BasePage(
-      showAppBar: false,
+      showAppBar: true,
+      customAppBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text("Add a task", style: TextStyle(color: Colors.black)),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SizedBox(
               width: 300,
-              child: TextField(
+              child: TextFormField(
                 controller: _taskController,
-                decoration: const InputDecoration(
-                  hintText: 'Enter your task',
-                  border: OutlineInputBorder(),
+                style: const TextStyle(color: Colors.black87),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.7),
+                  hintText: "Enter your task",
+                  contentPadding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
-                maxLines: null, // Allow multiline input
+                maxLines: null,
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.multiline,
               ),
@@ -51,6 +67,11 @@ class _TaskCreationState extends ConsumerState<TaskCreation> {
             SizedBox(
                 width: 200,
                 child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green[700],
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        )),
                     onPressed: () {
                       if (FirebaseAuth.instance.currentUser != null) {
                         Task task = Task(

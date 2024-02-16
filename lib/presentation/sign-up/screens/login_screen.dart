@@ -26,57 +26,78 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-        showAppBar: false,
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 300,
-              ),
-              SizedBox(
-                width: 240,
-                height: 50,
-                child: TextFormField(
-                  controller: _emailController,
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.3),
-                      hintText: "Email",
-                      border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                        Radius.circular(12),
-                      ))),
+      showAppBar: true,
+      customAppBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 240,
+              height: 50,
+              child: TextFormField(
+                controller: _emailController,
+                style: const TextStyle(color: Colors.black87), // Text color
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  hintText: "Email",
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 14), // Padding
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none, // No border
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              SizedBox(
-                width: 240,
-                height: 50,
-                child: TextFormField(
-                  controller: _passwordController,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.3),
-                      hintText: "Password",
-                      border: const OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                        Radius.circular(12),
-                      ))),
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 240,
+              height: 50,
+              child: TextFormField(
+                controller: _passwordController,
+                style: const TextStyle(color: Colors.black87), // Text color
+                obscureText: true,
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  hintText: "Password",
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 14), // Padding
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none, // No border
+                  ),
                 ),
               ),
-              const SizedBox(
-                height: 10,
+            ),
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 200,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: _signIn,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green[700], // Button color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25), // Button border
+                  ),
+                ),
+                child: const Text(
+                  "Log In",
+                  style: TextStyle(fontSize: 18),
+                ),
               ),
-              SizedBox(
-                  width: 200,
-                  child: ElevatedButton(
-                      onPressed: _signIn, child: const Text("Log In"))),
-            ],
-          ),
-        ));
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   void _signIn() async {
@@ -87,7 +108,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
 
     if (user != null) {
       context.go('/home');
-      print("User is succesfully logged in");
+      print("User is successfully logged in");
     }
   }
 }

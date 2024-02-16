@@ -26,56 +26,77 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      showAppBar: false,
+      showAppBar: true,
+      customAppBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        iconTheme: const IconThemeData(color: Colors.black),
+      ),
       child: Center(
-          child: Column(
-        children: [
-          const SizedBox(
-            height: 300,
-          ),
-          SizedBox(
-            width: 240,
-            height: 50,
-            child: TextFormField(
-              controller: _emailController,
-              decoration: InputDecoration(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 240,
+              height: 50,
+              child: TextFormField(
+                controller: _emailController,
+                style: const TextStyle(color: Colors.black87), // Text color
+                decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.3),
+                  fillColor: Colors.white.withOpacity(0.7), // Text field color
                   hintText: "Email",
-                  border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ))),
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 14), // Padding
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none, // No border
+                  ),
+                ),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            width: 240,
-            height: 50,
-            child: TextFormField(
-              obscureText: true,
-              controller: _passwordController,
-              decoration: InputDecoration(
+            const SizedBox(height: 10),
+            SizedBox(
+              width: 240,
+              height: 50,
+              child: TextFormField(
+                controller: _passwordController,
+                style: const TextStyle(color: Colors.black87), // Text color
+                obscureText: true,
+                decoration: InputDecoration(
                   filled: true,
-                  fillColor: Colors.white.withOpacity(0.3),
+                  fillColor: Colors.white.withOpacity(0.7), // Text field color
                   hintText: "Password",
-                  border: const OutlineInputBorder(
-                      borderRadius: BorderRadius.all(
-                    Radius.circular(12),
-                  ))),
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 14), // Padding
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none, // No border
+                  ),
+                ),
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          SizedBox(
+            const SizedBox(height: 10),
+            SizedBox(
               width: 200,
+              height: 50,
               child: ElevatedButton(
-                  onPressed: _signUp, child: const Text("Sign Up")))
-        ],
-      )),
+                onPressed: _signUp,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.green[700], // Button color
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(25), // Button border
+                  ),
+                ),
+                child: const Text(
+                  "Sign Up",
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -87,7 +108,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
 
     if (user != null) {
       context.go('/home');
-      print("User is succesfully created");
+      print("User is successfully created");
     }
   }
 }

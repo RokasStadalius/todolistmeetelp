@@ -28,7 +28,15 @@ class _TaskEditingScreenState extends ConsumerState<TaskEditingScreen> {
   Widget build(BuildContext context) {
     _taskController.text = widget.initialText!;
     return BasePage(
-      showAppBar: false,
+      showAppBar: true,
+      customAppBar: AppBar(
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text("Edit a task", style: TextStyle(color: Colors.black)),
+      ),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -36,11 +44,19 @@ class _TaskEditingScreenState extends ConsumerState<TaskEditingScreen> {
             SizedBox(
               width: 300,
               child: TextFormField(
-                controller: _taskController,
-                decoration: const InputDecoration(
-                  hintText: 'Enter your task',
-                  border: OutlineInputBorder(),
+                style: const TextStyle(color: Colors.black87),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white.withOpacity(0.7), // Text field color
+                  hintText: "Edit your task",
+                  contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 14), // Padding
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide.none, // No border
+                  ),
                 ),
+                controller: _taskController,
                 maxLines: null, // Allow multiline input
                 textAlign: TextAlign.center,
                 keyboardType: TextInputType.multiline,
@@ -52,6 +68,13 @@ class _TaskEditingScreenState extends ConsumerState<TaskEditingScreen> {
             SizedBox(
                 width: 200,
                 child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green[700], // Button color
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(25), // Button border
+                      ),
+                    ),
                     onPressed: () {
                       ref
                           .read(taskRepositoryProvider)

@@ -13,22 +13,22 @@ class BasePage extends StatelessWidget {
     required this.child,
     this.showAppBar = true, // Default to true for backward compatibility
     this.customAppBar, // Allow custom AppBar
-    this.gradientColors = const [Colors.blue, Colors.pink],
-    this.gradientBegin = Alignment.topRight,
-    this.gradientEnd = Alignment.bottomLeft,
+    this.gradientColors = const [Color(0xfffff700), Color(0xff3cd515)],
+    this.gradientBegin = Alignment.topLeft,
+    this.gradientEnd = Alignment.bottomRight,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: showAppBar
           ? customAppBar ??
               AppBar(
-                // Default AppBar if customAppBar is not provided
+                elevation: 0,
                 title: const Text('Default Title'),
-                // Other AppBar properties as needed
               )
-          : null, // Hide AppBar if showAppBar is false
+          : null,
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todoappmeetelp/data/services/auth_service.dart';
 import 'package:todoappmeetelp/domain/repositories/task_repository.dart';
@@ -7,14 +8,14 @@ import 'package:todoappmeetelp/presentation/home/widgets/task_tile.dart';
 import 'package:todoappmeetelp/presentation/widgets/base_page.dart';
 import 'package:todoappmeetelp/data/models/task.dart';
 
-class HomeTab extends StatefulWidget {
+class HomeTab extends ConsumerStatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
 
   @override
-  State<HomeTab> createState() => _HomeTabState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomeTabState();
 }
 
-class _HomeTabState extends State<HomeTab> {
+class _HomeTabState extends ConsumerState<HomeTab> {
   final TaskRepository _taskRepository = TaskRepository();
   late Stream<List<Task>> _tasksStream; // Define a stream of tasks
   final AuthService _auth = AuthService();
@@ -29,12 +30,13 @@ class _HomeTabState extends State<HomeTab> {
   @override
   Widget build(BuildContext context) {
     return BasePage(
-      showAppBar: true,
       customAppBar: AppBar(
-        title: const Text("To-Do-List"),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        title: const Text("To-Do-List", style: TextStyle(color: Colors.black)),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.logout),
+            icon: const Icon(Icons.logout, color: Colors.black),
             onPressed: () {
               _auth.signOut();
               context.go('/');
@@ -74,6 +76,7 @@ class _HomeTabState extends State<HomeTab> {
             bottom: 16.0,
             right: 16.0,
             child: FloatingActionButton(
+              backgroundColor: Colors.green.shade600,
               onPressed: () {
                 return context.go(
                   context.namedLocation('taskcreate'),

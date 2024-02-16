@@ -58,6 +58,10 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
 
+fonts:
+  family: Fredoka
+  fonts:
+    asset: 'assets/fonts/Fredoka-Regular.ttf'
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
