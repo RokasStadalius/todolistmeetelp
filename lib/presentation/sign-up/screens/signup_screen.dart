@@ -40,6 +40,7 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
               width: 240,
               height: 50,
               child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 style: const TextStyle(color: Colors.black87),
                 decoration: InputDecoration(
@@ -104,11 +105,18 @@ class _SignUpScreenState extends ConsumerState<SignUpScreen> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await ref.read(authServiceProvider).signUp(email, password);
-
-    if (user != null) {
-      context.go('/home');
-      print("User is successfully created");
+    if (password.length < 6) {
+      const snackBar = SnackBar(
+          content: Text("Password should be at least 6 characters long"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    }
+    try {
+      await ref
+          .read(authNotifier.notifier)
+          .signUp(email: email, password: password);
+    } catch (e) {
+      print("Error occured during Sign Up");
     }
   }
 }

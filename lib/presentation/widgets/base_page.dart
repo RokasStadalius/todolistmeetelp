@@ -29,15 +29,19 @@ class BasePage extends StatelessWidget {
                 title: const Text('Default Title'),
               )
           : null,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: gradientBegin,
-            end: gradientEnd,
-            colors: gradientColors,
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: gradientBegin,
+                end: gradientEnd,
+                colors: gradientColors,
+              ),
+            ),
           ),
-        ),
-        child: child,
+          Positioned.fill(child: child),
+        ],
       ),
     );
   }

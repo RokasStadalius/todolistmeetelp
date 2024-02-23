@@ -20,7 +20,7 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$Task {
-  String? get taskID => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get userId => throw _privateConstructorUsedError;
   String get text => throw _privateConstructorUsedError;
 
@@ -34,7 +34,7 @@ abstract class $TaskCopyWith<$Res> {
   factory $TaskCopyWith(Task value, $Res Function(Task) then) =
       _$TaskCopyWithImpl<$Res, Task>;
   @useResult
-  $Res call({String? taskID, String userId, String text});
+  $Res call({String id, String userId, String text});
 }
 
 /// @nodoc
@@ -50,15 +50,15 @@ class _$TaskCopyWithImpl<$Res, $Val extends Task>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskID = freezed,
+    Object? id = null,
     Object? userId = null,
     Object? text = null,
   }) {
     return _then(_value.copyWith(
-      taskID: freezed == taskID
-          ? _value.taskID
-          : taskID // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -78,7 +78,7 @@ abstract class _$$TaskImplCopyWith<$Res> implements $TaskCopyWith<$Res> {
       __$$TaskImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? taskID, String userId, String text});
+  $Res call({String id, String userId, String text});
 }
 
 /// @nodoc
@@ -91,15 +91,15 @@ class __$$TaskImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? taskID = freezed,
+    Object? id = null,
     Object? userId = null,
     Object? text = null,
   }) {
     return _then(_$TaskImpl(
-      taskID: freezed == taskID
-          ? _value.taskID
-          : taskID // ignore: cast_nullable_to_non_nullable
-              as String?,
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -116,14 +116,13 @@ class __$$TaskImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$TaskImpl implements _Task {
   const _$TaskImpl(
-      {this.taskID = null, required this.userId, required this.text});
+      {required this.id, required this.userId, required this.text});
 
   factory _$TaskImpl.fromJson(Map<String, dynamic> json) =>
       _$$TaskImplFromJson(json);
 
   @override
-  @JsonKey()
-  final String? taskID;
+  final String id;
   @override
   final String userId;
   @override
@@ -131,7 +130,7 @@ class _$TaskImpl implements _Task {
 
   @override
   String toString() {
-    return 'Task(taskID: $taskID, userId: $userId, text: $text)';
+    return 'Task(id: $id, userId: $userId, text: $text)';
   }
 
   @override
@@ -139,14 +138,14 @@ class _$TaskImpl implements _Task {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TaskImpl &&
-            (identical(other.taskID, taskID) || other.taskID == taskID) &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.text, text) || other.text == text));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, taskID, userId, text);
+  int get hashCode => Object.hash(runtimeType, id, userId, text);
 
   @JsonKey(ignore: true)
   @override
@@ -164,14 +163,14 @@ class _$TaskImpl implements _Task {
 
 abstract class _Task implements Task {
   const factory _Task(
-      {final String? taskID,
+      {required final String id,
       required final String userId,
       required final String text}) = _$TaskImpl;
 
   factory _Task.fromJson(Map<String, dynamic> json) = _$TaskImpl.fromJson;
 
   @override
-  String? get taskID;
+  String get id;
   @override
   String get userId;
   @override

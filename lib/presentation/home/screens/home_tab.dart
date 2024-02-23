@@ -1,29 +1,27 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todoappmeetelp/data/services/auth_service.dart';
 import 'package:todoappmeetelp/domain/repositories/task_repository.dart';
 import 'package:todoappmeetelp/presentation/home/widgets/task_tile.dart';
 import 'package:todoappmeetelp/presentation/widgets/base_page.dart';
 import 'package:todoappmeetelp/data/models/task.dart';
+import 'package:todoappmeetelp/providers/auth_serivce.provider.dart';
+import 'package:todoappmeetelp/providers/task_repository_provider.dart';
 
-class HomeTab extends StatefulWidget {
+class HomeTab extends ConsumerStatefulWidget {
   const HomeTab({Key? key}) : super(key: key);
 
   @override
-  State<HomeTab> createState() => _HomeTabState();
+  ConsumerState<ConsumerStatefulWidget> createState() => _HomeTabState();
 }
 
-class _HomeTabState extends State<HomeTab> {
-  final TaskRepository _taskRepository = TaskRepository();
-  late Stream<List<Task>> _tasksStream;
-  final AuthService _auth = AuthService();
-
+class _HomeTabState extends ConsumerState<HomeTab> {
   @override
   void initState() {
     super.initState();
-    _tasksStream = _taskRepository
-        .fetchTasksStream(FirebaseAuth.instance.currentUser!.uid);
+    _fetchTasks();
   }
 
   @override
@@ -37,55 +35,52 @@ class _HomeTabState extends State<HomeTab> {
           IconButton(
             icon: const Icon(Icons.logout, color: Colors.black),
             onPressed: () {
-              _auth.signOut();
-              context.go('/');
+              ref.read(authNotifier.notifier).signOut();
             },
           )
         ],
       ),
-      child: Stack(
-        children: [
-          StreamBuilder<List<Task>>(
-            stream: _tasksStream,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else if (snapshot.hasError) {
-                return Center(
-                  child: Text('Error: ${snapshot.error}'),
-                );
-              } else {
-                final tasks = snapshot.data ?? [];
-                return ListView.builder(
-                  itemCount: tasks.length,
+      child: Consumer(
+        builder: (context, watch, child) {
+          final tasksState = ref.watch(taskProvider);
+          return Stack(
+            children: [
+              SizedBox(
+                height: 800,
+                child: ListView.builder(
+                  itemCount: tasksState.tasks.length,
                   itemBuilder: (context, index) {
-                    final task = tasks[index];
+                    final task = tasksState.tasks[index];
                     return TaskTile(
                       text: task.text,
-                      taskId: task.taskID,
+                      id: task.id,
                     );
                   },
-                );
-              }
-            },
-          ),
-          Positioned(
-            bottom: 16.0,
-            right: 16.0,
-            child: FloatingActionButton(
-              backgroundColor: Colors.green.shade500,
-              onPressed: () {
-                return context.go(
-                  context.namedLocation('taskcreate'),
-                );
-              },
-              child: const Icon(Icons.add),
-            ),
-          ),
-        ],
+                ),
+              ),
+              Positioned(
+                bottom: 16.0,
+                right: 16.0,
+                child: FloatingActionButton(
+                  backgroundColor: Colors.green.shade500,
+                  onPressed: () {
+                    return context.go(
+                      context.namedLocation('taskcreate'),
+                    );
+                  },
+                  child: const Icon(Icons.add),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
+  }
+
+  Future<void> _fetchTasks() async {
+    final taskNotifier = ref.read(taskProvider.notifier);
+    final uid = ref.read(authNotifier.notifier).getCurrentUser()!.uid;
+    await taskNotifier.fetchTasksStream(uid);
   }
 }

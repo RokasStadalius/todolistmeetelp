@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:todoappmeetelp/data/models/task.dart';
 import 'package:todoappmeetelp/presentation/widgets/base_page.dart';
+import 'package:todoappmeetelp/providers/auth_serivce.provider.dart';
 import 'package:todoappmeetelp/providers/task_repository_provider.dart';
 
 class TaskCreation extends ConsumerStatefulWidget {
@@ -73,18 +74,23 @@ class _TaskCreationState extends ConsumerState<TaskCreation> {
                           borderRadius: BorderRadius.circular(25),
                         )),
                     onPressed: () {
-                      if (FirebaseAuth.instance.currentUser != null) {
-                        Task task = Task(
-                            userId: FirebaseAuth.instance.currentUser!.uid,
-                            text: _taskController.text);
-                        ref.read(taskRepositoryProvider).createTask(task);
-                        context.go('/home');
-                      }
+                      _createTask();
                     },
                     child: const Text("Add Task"))),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> _createTask() async {
+    if (_taskController.text.isEmpty) {
+      const snackBar =
+          SnackBar(content: Text("Unable to create an empty task"));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    }
+    await ref.read(taskProvider.notifier).createTask(_taskController.text);
+    context.go('/');
   }
 }

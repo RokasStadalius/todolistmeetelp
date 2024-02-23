@@ -6,7 +6,7 @@ part 'task.g.dart';
 @Freezed()
 class Task with _$Task {
   const factory Task({
-    @Default(null) String? taskID,
+    required String id,
     required String userId,
     required String text,
   }) = _Task;

@@ -40,6 +40,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
               width: 240,
               height: 50,
               child: TextFormField(
+                keyboardType: TextInputType.emailAddress,
                 controller: _emailController,
                 style: const TextStyle(color: Colors.black87),
                 decoration: InputDecoration(
@@ -104,11 +105,25 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
     String email = _emailController.text;
     String password = _passwordController.text;
 
-    User? user = await ref.read(authServiceProvider).signIn(email, password);
+    try {
+      await ref
+          .read(authNotifier.notifier)
+          .signIn(email: email, password: password);
 
-    if (user != null) {
-      context.go('/home');
-      print("User is successfully logged in");
+      if (ref.read(authNotifier) != null) {
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Sign in failed. Please check your credentials.'),
+          ),
+        );
+      }
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('An error occurred: $error'),
+        ),
+      );
     }
   }
 }

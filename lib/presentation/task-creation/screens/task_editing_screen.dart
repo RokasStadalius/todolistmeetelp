@@ -75,10 +75,11 @@ class _TaskEditingScreenState extends ConsumerState<TaskEditingScreen> {
                       ),
                     ),
                     onPressed: () {
+                      print(widget.taskId);
                       ref
-                          .read(taskRepositoryProvider)
+                          .read(taskProvider.notifier)
                           .editTask(widget.taskId, _taskController.text);
-                      context.go('/home');
+                      context.go('/');
                     },
                     child: const Text("Edit Task"))),
           ],
